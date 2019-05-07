@@ -594,9 +594,11 @@ public class RNPushNotificationHelper {
 
         NotificationChannel channel = manager.getNotificationChannel(NOTIFICATION_CHANNEL_ID_TMP);
         if (channel == null) {
-            channel = new NotificationChannel(NOTIFICATION_CHANNEL_ID_TMP, this.config.getChannelName(), NotificationManager.IMPORTANCE_DEFAULT);
+            //channel = new NotificationChannel(NOTIFICATION_CHANNEL_ID_TMP, this.config.getChannelName(), NotificationManager.IMPORTANCE_DEFAULT);
+			channel = new NotificationChannel(NOTIFICATION_CHANNEL_ID_TMP, this.config.getChannelName() != null ? this.config.getChannelName() : "rn-push-notification-channel", importance);
             channel.enableLights(true);
             channel.enableVibration(true); // ??? test when Alarm='none'
+			channel.setDescription(this.config.getChannelDescription());
 
             if (soundUri != null) {
                 AudioAttributes audioAttributes = new AudioAttributes.Builder()
